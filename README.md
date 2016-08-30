@@ -1,4 +1,4 @@
-# Gale Shapley In Python
+# Gale Shipley In Python
 #### Bradley Taniguchi
 #### 8/30/16
 #### Gale Shapley implimented in python
