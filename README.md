@@ -12,13 +12,6 @@ This program is written in Python3.
 git clone https://github.com/bradtaniguchi/
 ```
 
-###Running
-
-
-```shell
-python3 
-```
-
 ###Running and Runtime Arguments
 *You need python3 to run this program, otherwise you will get errors if you use python2!*
 The program will default to 5 men/women and printout effeciency status's if no arguments are given.
@@ -27,7 +20,7 @@ The program will default to 5 men/women and printout effeciency status's if no a
 ```
 ####Options:
 ```shell
-    -v : Verbose - Provides all extra printouts (debugging and runtime effeciency)
-    -s : Supress - supresses all printouts (debugging and runtime effeciency) and just returns the matchups
+    -v : Verbose - Provides all extra printouts 
+    NumberOfCouples - the number of couples to generate for
 ```
 

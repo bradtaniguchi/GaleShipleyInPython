@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys  # to get command line arguments
 import random  # to generate random preferences
 
 class Person():
@@ -29,30 +30,30 @@ class Person():
         for person in self.pref:
             print(person.name.ljust(spacing), end=" ")  # no newline
 
-def main():
-    #generate a list of 5 men and 5 women
-    num = 5
+
+def main(numberOfCouples, verbose): 
+    num = numberOfCouples
     men = []
     women = []
-    for i in range(0,num):        
+    for i in range(0,num):
         men.append(Person("man" + str(i), True))
         women.append(Person("woman" + str(i), False))
     
     # after generating the list of men and women
     # randomly generate the preferences lists for each
-    print("=========End Preferences========")
+    if(verbose): print("=========Defining Preferences========")
     for man in men:
         man.generateRandPref(women)
-        print(man.name.ljust(10) + " [ ", end="")
-        man.getPref()
-        print("]")
+        if(verbose): print(man.name.ljust(10) + " [ ", end="")
+        if(verbose): man.getPref()
+        if(verbose): print("]")
     for woman in women:
         woman.generateRandPref(men)
-        print(woman.name.ljust(10) + " [ ", end="")
-        woman.getPref()
-        print("]")
+        if(verbose): print(woman.name.ljust(10) + " [ ", end="")
+        if(verbose): woman.getPref()
+        if(verbose): print("]")
 
-    print("=======Defining Preferences======")
+    if(verbose): print("=======End Preferences======")
     # now the preferences are done, start propositions
     lonelyMen = list(men)  # men that haven't propsed
     while len(lonelyMen) > 0:  # while there is a man that hasn't proposed
@@ -85,4 +86,25 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) == 1: 
+        print("Not enough arguments given!\n" +
+              "GS.py [Options] NumberOfCouples\n" + 
+              "  -v : Verbose - Provides all extra printouts\n")
+        sys.exit(1)  # not enough arguments!
+    else:
+        verbose = False
+        numberOfCouples = 0
+        for i in range(1, len(sys.argv)):
+            arg = sys.argv[i]
+            if arg == '-v' or arg == '-V' or arg == '-Verbose':
+                verbose = True
+                continue
+            if i == len(sys.argv)-1:  # occur on the last argument given
+                numberOfCouples = int(arg)
+                break
+        if numberOfCouples <= 0:
+            print("You didn't give a correct value for Number of Couples!")
+            sys.exit(1)
+
+        if(verbose): print("Program Arguments: " + str(sys.argv))
+        main(numberOfCouples,verbose)
