@@ -13,8 +13,8 @@ class Person():
             _generateRandPref(prefList)
         else:
             self.pref = []
-        self.name = name #string
-        self.male = male #boolean, not really used
+        self.name = name  # string
+        self.male = male  # boolean, not really used
         self.fiance = None
 
     def addPref(self, list):
@@ -24,6 +24,10 @@ class Person():
         self.pref = listOfOtherGender
         random.shuffle(self.pref)  # does inline, returns nothing!
     
+    def getPref(self, spacing=8):
+        """Utility function, Prints out preference list"""
+        for person in self.pref:
+            print(person.name.ljust(spacing), end=" ")  # no newline
 
 def main():
     #generate a list of 5 men and 5 women
@@ -36,14 +40,19 @@ def main():
     
     # after generating the list of men and women
     # randomly generate the preferences lists for each
+    print("=========End Preferences========")
     for man in men:
         man.generateRandPref(women)
+        print(man.name.ljust(10) + " [ ", end="")
+        man.getPref()
+        print("]")
     for woman in women:
         woman.generateRandPref(men)
-    
-    print("================")
-    #TODO: print out the preference lists here!
-    print("================")
+        print(woman.name.ljust(10) + " [ ", end="")
+        woman.getPref()
+        print("]")
+
+    print("=======Defining Preferences======")
     # now the preferences are done, start propositions
     lonelyMen = list(men)  # men that haven't propsed
     while len(lonelyMen) > 0:  # while there is a man that hasn't proposed
@@ -62,18 +71,17 @@ def main():
             Person(crush.fiance).fiance = None  # set the fiance of the fiance's 
             crush.fiance = readyMan # set the man as the fiance's
             readyMan.fiance = checkWoman # set the woman as the fiance
-            
-            
+
         # crush prefers her current fiance to readyMan
         else:  # here for clarity
             continue
             
     # return the set of S of engaged pairs.
-    print("Men engaged: " + str(len(men)))
+    print("Couples engaged: " + str(len(men)))
     for man in men:
-        print("Fiance for: " + man.name + " " + man.fiance.name)
+        print("Couple: " + man.name + " <---> " + man.fiance.name)
     for woman in women:
-        print("Fiance for: " + woman.name + " " + woman.fiance.name)
+        print("Couple: " + woman.name + " <---> " + woman.fiance.name)
 
 
 if __name__ == '__main__':
