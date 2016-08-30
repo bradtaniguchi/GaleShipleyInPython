@@ -1,4 +1,4 @@
-# Gale_Shapley_Python
+# Gale Shapley In Python
 #### Bradley Taniguchi
 #### 8/30/16
 #### Gale Shapley implimented in python
@@ -9,7 +9,7 @@ This program is written in Python3.
 *To install this program with git using the command:*
 
 ```shell
-git clone https://github.com/bradtaniguchi/
+git clone https://github.com/bradtaniguchi/GaleShipleyInPython.git
 ```
 
 ###Running and Runtime Arguments
