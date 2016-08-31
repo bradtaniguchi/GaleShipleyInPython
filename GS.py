@@ -60,9 +60,10 @@ def main(numberOfCouples, verbose):
         if(verbose): print(readyMan.name + " is looking for a fiance...") 
 
         crush = readyMan.pref.pop(0)  # pop top woman in "stack"
-        if(verbose): print(readyMan.name + " is proposing to: " + crush.name)
+        if(verbose): print(" " + readyMan.name + " is proposing to: " + crush.name)
         # and see if woman is engaged
         if (crush.fiance is None) :  # if woman isn't engaged
+            print("  " + readyMan.name + " and " + crush.name + " got engaged")
             crush.fiance = readyMan  # set the man as the fiance!s
             readyMan.fiance = crush  # set the woman as the fiance
         #elif (crush.pref.index(readyMan) > crush.pref.index(crush.fiance)): 
@@ -70,16 +71,16 @@ def main(numberOfCouples, verbose):
             otherMan = crush.fiance
             if (crush.pref.index(readyMan) > crush.pref.index(otherMan)):
                 if(verbose): 
-                    print(readyMan.name +" ("+ str(crush.pref.index(readyMan)) +") " + 
-                        " got dejected by " + crush.name)
+                    print(" " + readyMan.name + " got dejected by " + crush.name)
                 lonelyMen.append(readyMan)  # no longer ready, push to top of stack
             else:  # our readyMan is liked BETTER
                 if(verbose): 
-                    print(readyman.name + " is liked better than " + otherMan.name)
+                    print("  " + readyMan.name + " is liked better than " + otherMan.name + " " + otherMan.name + " ")
                 otherMan.fiance = None
-                lonelyMen.append(otherMan)  # no longer ready, push to top of stack
+                lonelyMen.append(otherMan)  # no longer ready, add back to list
                 crush.fiance = readyMan
                 readyMan.fiance = crush
+        print("")
     if(verbose): print("==========End Engagements=========")
     for man in men:
         print("Couple: " + man.name + " <---> " + man.fiance.name)
